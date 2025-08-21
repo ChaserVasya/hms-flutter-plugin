@@ -87,7 +87,7 @@ public class NotificationIntentListener implements NewIntentListener {
             Map<String, Object> extras = MapUtils.toMap(BundleUtils.convertJSONObject(bundleExtras));
             map.put("extras", extras);
         }
-        if (Intent.ACTION_VIEW.equals(action)) {
+        if (Intent.ACTION_VIEW.equals(action) || "SELECT_NOTIFICATION".equals(action)) {
             initialIntent = dataString;
             Utils.sendIntent(context, PushIntent.REMOTE_MESSAGE_NOTIFICATION_INTENT_ACTION, PushIntent.CUSTOM_INTENT,
                 initialIntent);

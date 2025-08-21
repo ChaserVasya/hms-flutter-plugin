@@ -121,9 +121,10 @@ public class Utils {
     public static boolean checkNotificationFlags(Intent intent) {
         int flagNumber = Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_RECEIVER_REPLACE_PENDING
             | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
+        String action = intent.getAction();
         int flagNumberAndBroughtToFront = flagNumber | Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT;
         return intent.getFlags() == flagNumber || intent.getFlags() == flagNumberAndBroughtToFront
-            || intent.getBundleExtra(NotificationConstants.NOTIFICATION) != null || intent.getDataString() != null;
+            || intent.getBundleExtra(NotificationConstants.NOTIFICATION) != null || intent.getDataString() != null || "SELECT_NOTIFICATION".equals(action);
     }
 
     public static void handleSuccessOnUIThread(final MethodChannel.Result result) {
